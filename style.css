@@ -1,0 +1,541 @@
+:root {
+    --primary-color: #00a8cc; /* Bleu Nexah */
+    --secondary-color: #2c3e50;
+    --text-color: #333;
+    --light-bg: #f4f7f6;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    margin: 0 15px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover, .nav-links li a.active {
+    color: var(--primary-color);
+}
+
+/* Hero */
+.hero {
+    height: 80vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.slide {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--primary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 50px;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #0086a3;
+}
+
+/* Services */
+.services {
+    padding: 80px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+/* Stats */
+.stats {
+    background: var(--secondary-color);
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.stat-item .number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    display: block;
+}
+
+/* Footer */
+footer {
+    background: #1a1a1a;
+    color: #ccc;
+    padding: 60px 0 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Mobile Menu */
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .menu-toggle { display: block; }
+}
+
+.logo img {
+    height: 130px; /* Ajustez selon la hauteur de votre header */
+    width: auto;  /* Garde les proportions intactes */
+    object-fit: contain; /* S'assure que rien n'est coupé */
+    padding: 10px 0;    /* Donne de l'espace pour que le texte ne colle pas aux bords */
+}
+
+.hero {
+    height: 100vh; /* Toute la hauteur de l'écran */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    background-size: cover;
+    transition: background-image 1s ease-in-out; /* Transition douce de l'image */
+    position: relative;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.4); /* Filtre sombre pour lire le texte */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10%;
+    color: white;
+}
+
+.hero-content {
+    max-width: 600px;
+    /* Animation du texte */
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slider-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 30px;
+    height: 3px;
+    background: rgba(255,255,255,0.5);
+    transition: 0.3s;
+}
+
+.dot.active {
+    background: #fff;
+    width: 50px; /* La barre active est plus longue comme sur la vidéo */
+}
+
+/* Style de base des cartes de services */
+.service-card {
+    opacity: 0;
+    transform: translateY(30px); /* Pousse la carte vers le bas */
+    transition: all 0.8s ease-out; /* Durée de la fluidité */
+}
+
+/* La classe qui sera ajoutée en JavaScript */
+.service-card.reveal {
+    opacity: 1;
+    transform: translateY(0); /* Remonte à sa position initiale */
+}
+
+/* Optionnel : Délai pour un effet "en cascade" */
+.service-card:nth-child(1) { transition-delay: 0.1s; }
+.service-card:nth-child(2) { transition-delay: 0.3s; }
+.service-card:nth-child(3) { transition-delay: 0.5s; }
+
+.partners-section {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+    overflow: hidden; /* Important pour cacher ce qui dépasse */
+}
+
+.partners-slider {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.partners-track {
+    display: flex;
+    width: calc(250px * 10); /* Largeur d'un logo * nombre total de logos */
+    animation: scroll-infinite 35s linear infinite;
+}
+
+.partner-logo {
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.partner-logo img {
+    max-width: 150px;
+    height: auto;
+    filter: none; /* Optionnel : logos en gris comme sur la capture */
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.partner-logo img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* L'ANIMATION */
+@keyframes scroll-infinite {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* On s'arrête à la moitié (fin de la 1ère série) */
+    }
+}
+
+/* Pause au survol pour que l'utilisateur puisse regarder un partenaire */
+.partners-track:hover {
+    animation-play-state: paused;
+}
+
+.stats-section {
+    padding: 80px 0;
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: space-around;
+}
+
+.counter {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #00a8cc; /* Votre couleur turquoise */
+    display: block;
+    margin-bottom: 10px;
+}
+
+.main-footer {
+    background-color: #405a69;
+    color: #ffffff;
+    padding: 80px 0 20px;
+    font-size: 0.95rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+/* Redimensionnement du Logo dans le Footer */
+.footer-logo img {
+    height: 100px; /* Hauteur plus importante pour votre logo vertical */
+    width: auto;
+    margin-bottom: 20px;
+    filter: none; /* Transforme le logo noir en blanc pour le fond sombre */
+    object-fit: contain;
+}
+
+.footer-col h4 {
+    color: var(--primary-color); /* Utilise votre bleu turquoise */
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 30px;
+    height: 2px;
+    background: var(--primary-color);
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+    color: #bbb;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-col ul li a:hover {
+    color: var(--primary-color);
+    padding-left: 5px;
+}
+
+/* Réseaux Sociaux */
+.social-links {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    width: 35px;
+    height: 35px;
+    background: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    background: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* Barre de Copyright */
+.footer-bottom {
+    border-top: 1px solid #333;
+    padding-top: 25px;
+    text-align: center;
+    color: #777;
+    font-size: 0.85rem;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    color: #bbb;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-info i {
+    color: var(--primary-color);
+}
+
+/* pages about */
+/* Hero Section */
+.hero-about {
+    height: 400px;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('public/img/slider/noslide.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-about h1 { font-size: 3rem; }
+
+.breadcrumb {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    margin-top: 10px;
+}
+
+/* Grilles Mission/Vision */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    padding: 60px 0;
+}
+
+.grid-2.reverse .text-box { order: 2; }
+.grid-2.reverse .image-box { order: 1; }
+
+.image-box img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Cartes de Valeurs */
+.values-section {
+    background: #f9f9f9;
+    padding: 80px 0;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.value-card {
+    background: white;
+    padding: 40px 30px;
+    text-align: center;
+    border-radius: 15px;
+    transition: 0.3s;
+    border-bottom: 4px solid transparent;
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+    border-bottom: 4px solid var(--primary-color);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+}
+
+.value-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.center-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .grid-2, .grid-2.reverse {
+        grid-template-columns: 1fr;
+    }
+    .grid-2.reverse .image-box { order: 2; }
+}
