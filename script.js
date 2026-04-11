@@ -132,3 +132,109 @@ document.addEventListener("DOMContentLoaded", () => {
 
     counters.forEach(counter => observer.observe(counter));
 });
+
+
+const observerOptions = {
+    threshold: 0.1, // Se déclenche dès que 10% de la carte est visible
+    rootMargin: "0px 0px -50px 0px"
+};
+
+const revealOnScroll = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            // On ajoute un petit délai progressif (cascade)
+            setTimeout(() => {
+                entry.target.classList.add('active');
+                // console.log("Élément activé !"); // Supprimez le // pour tester dans la console
+            }, index * 150);
+            
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Cette fonction initialise l'observation
+function initAnimations() {
+    const items = document.querySelectorAll('.reveal-item');
+    if (items.length > 0) {
+        items.forEach(item => revealOnScroll.observe(item));
+    }
+}
+
+// On lance au chargement
+window.addEventListener('load', initAnimations);
+
+
+
+
+// INITIALISATION EMAILJS (À configurer)
+(function() {
+    // REMPLACEZ 'VOTRE_CLE_PUBLIQUE' par votre clé fournie par EmailJS
+    emailjs.init("VOTRE_CLE_PUBLIQUE"); 
+})();
+
+const contactForm = document.getElementById('contact-form');
+const statusMsg = document.getElementById('form-status');
+const submitBtn = document.getElementById('submit-btn');
+
+if(contactForm) {
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        submitBtn.innerHTML = "Envoi en cours... <i class='fas fa-spinner fa-spin'></i>";
+        submitBtn.disabled = true;
+
+        // Paramètres : 'ServiceID', 'TemplateID', '#formID'
+        emailjs.sendForm('VOTRE_SERVICE_ID', 'VOTRE_TEMPLATE_ID', this)
+            .then(function() {
+                statusMsg.innerHTML = "<span class='success'>Message envoyé avec succès !</span>";
+                contactForm.reset();
+            }, function(error) {
+                statusMsg.innerHTML = "<span class='error'>Erreur lors de l'envoi. Réessayez.</span>";
+                console.log('FAILED...', error);
+            })
+            .finally(() => {
+                submitBtn.innerHTML = "Envoyer <i class='fas fa-paper-plane'></i>";
+                submitBtn.disabled = false;
+            });
+    });
+}
+
+
+
+
+(function() {
+    function checkJobStatus() {
+        const today = new Date();
+        const cards = document.querySelectorAll('.job-card');
+
+        cards.forEach(card => {
+            const expiryStr = card.getAttribute('data-expiry');
+            const statusLabel = card.querySelector('.job-status');
+            const btn = card.querySelector('.btn-postuler');
+
+            if (expiryStr) {
+                const expiryDate = new Date(expiryStr);
+
+                if (expiryDate < today) {
+                    // OFFRE EXPIRÉE
+                    card.classList.add('expired');
+                    statusLabel.textContent = "Expiré";
+                    statusLabel.classList.add('status-expired');
+                    if(btn) btn.textContent = "Clôturé";
+                } else {
+                    // OFFRE ACTIVE
+                    statusLabel.textContent = "Actif";
+                    statusLabel.classList.add('status-active');
+                }
+            }
+        });
+    }
+
+    // On lance la vérification une fois le document chargé
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', checkJobStatus);
+    } else {
+        checkJobStatus();
+    }
+})();

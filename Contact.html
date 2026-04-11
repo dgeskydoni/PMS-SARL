@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMS | Conseil & Shop</title>
+    <link rel="shortcut icon" href="public/img/logos/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="public/img/logos/logo.png" alt="Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="partenariat.html">Partenariat</a></li>
+                <li><a href="Carrière.html">Carrière</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Contactez-nous</h1>
+            <p>Notre équipe d'experts est à votre disposition pour répondre à vos besoins spécifiques.</p>
+        </div>
+    </section>
+
+    <section class="contact-info container">
+        <div class="info-grid">
+            <div class="info-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>VISITEZ NOS BUREAUX</h3>
+                <p>Rue Expert, Lendi<br>Douala-Cameroun</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-phone-alt"></i>
+                <h3>PARLONS-EN</h3>
+                <p><i class="fab fa-whatsapp"></i>+237 694 344 592<br>+237 674 834 911</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-envelope"></i>
+                <h3>ENVOYEZ-NOUS UN E-MAIL</h3>
+                <p>contact@pmsconseil.com<br></p>
+            </div>
+        </div>
+    </section>
+    <div class="contact-intro container reveal-item">
+    <h2>Vous avez un projet ou une question ?</h2>
+    <p>
+        Remplissez le formulaire ci-dessous. Notre équipe vous répondra dans les plus brefs délais 
+        pour discuter de vos besoins et vous proposer des solutions sur mesure.
+    </p>
+</div>
+
+<div class="contact-wrapper">
+    </div>
+
+    <section class="contact-section container">
+        <div class="contact-wrapper">
+            <div class="form-container">
+                <h2>Envoyez-nous un message</h2>
+                <form id="contact-form">
+                    <div class="input-group">
+                        <input type="text" name="user_name" placeholder="Votre nom complet" required>
+                        <input type="tel" name="user_phone" placeholder="Numéro de téléphone" required>
+                    </div>
+                    <input type="email" name="user_email" placeholder="Votre adresse e-mail" required>
+                    <textarea name="message" placeholder="Votre message..." rows="5" required></textarea>
+                    
+                    <button type="submit" id="submit-btn">
+                        <span class="btn-text">Envoyer</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                    <div id="form-status"></div>
+                </form>
+            </div>
+
+            <div class="map-container">
+    <iframe 
+        src="https://maps.google.com/maps?q=4.1425545502758, 9.773077937554016&t=h&z=16&output=embed" 
+        width="100%" 
+        height="100%" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
