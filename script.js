@@ -40,6 +40,8 @@ const textElement = document.getElementById('slider-text');
 const dots = document.querySelectorAll('.dot');
 
 // 3. Fonction de mise à jour
+const slider = document.querySelector('.slider');
+
 function updateSlider() {
     const current = sliderData[currentIndex];
 
@@ -170,7 +172,7 @@ window.addEventListener('load', initAnimations);
 // INITIALISATION EMAILJS (À configurer)
 (function() {
     // REMPLACEZ 'VOTRE_CLE_PUBLIQUE' par votre clé fournie par EmailJS
-    emailjs.init("VOTRE_CLE_PUBLIQUE"); 
+    emailjs.init("1yWA4dRfwA1f7yD1e"); 
 })();
 
 const contactForm = document.getElementById('contact-form');
@@ -185,7 +187,7 @@ if(contactForm) {
         submitBtn.disabled = true;
 
         // Paramètres : 'ServiceID', 'TemplateID', '#formID'
-        emailjs.sendForm('VOTRE_SERVICE_ID', 'VOTRE_TEMPLATE_ID', this)
+        emailjs.sendForm('service_blfrgp6', 'template_ba13ngv')
             .then(function() {
                 statusMsg.innerHTML = "<span class='success'>Message envoyé avec succès !</span>";
                 contactForm.reset();
@@ -205,7 +207,10 @@ if(contactForm) {
 
 (function() {
     function checkJobStatus() {
+        // 1. On récupère la date d'aujourd'hui
         const today = new Date();
+        
+        // 2. On sélectionne toutes les cartes d'emploi
         const cards = document.querySelectorAll('.job-card');
 
         cards.forEach(card => {
@@ -214,27 +219,63 @@ if(contactForm) {
             const btn = card.querySelector('.btn-postuler');
 
             if (expiryStr) {
+                // On transforme la chaîne "2026-12-31" en objet Date
                 const expiryDate = new Date(expiryStr);
 
+                // On compare : si la date d'expiration est plus petite que maintenant
                 if (expiryDate < today) {
-                    // OFFRE EXPIRÉE
+                    // --- ACTIONS POUR OFFRE EXPIRÉE ---
                     card.classList.add('expired');
-                    statusLabel.textContent = "Expiré";
-                    statusLabel.classList.add('status-expired');
-                    if(btn) btn.textContent = "Clôturé";
+                    if (statusLabel) {
+                        statusLabel.textContent = "Expiré";
+                        statusLabel.style.color = "red"; // Exemple de style direct
+                    }
+                    if (btn) {
+                        btn.textContent = "Clôturé";
+                        btn.style.pointerEvents = "none"; // Désactive le clic
+                        btn.style.opacity = "0.5";       // Rend le bouton gris
+                    }
                 } else {
-                    // OFFRE ACTIVE
-                    statusLabel.textContent = "Actif";
-                    statusLabel.classList.add('status-active');
+                    // --- ACTIONS POUR OFFRE ACTIVE ---
+                    if (statusLabel) {
+                        statusLabel.textContent = "Actif";
+                        statusLabel.style.color = "green";
+                    }
                 }
             }
         });
     }
 
-    // On lance la vérification une fois le document chargé
+    // Lancement de la fonction au chargement de la page
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', checkJobStatus);
     } else {
         checkJobStatus();
     }
 })();
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // GESTION DES ACCORDÉONS (EMPLOIS)
+    const jobHeaders = document.querySelectorAll('.job-header-bar');
+
+    jobHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const currentItem = header.parentElement;
+            
+            // Ferme les autres si on veut qu'un seul soit ouvert à la fois (optionnel)
+            /*
+            document.querySelectorAll('.job-item').forEach(item => {
+                if(item !== currentItem) item.classList.remove('open');
+            });
+            */
+
+            currentItem.classList.toggle('open');
+        });
+    });
+
+    // On garde aussi le code pour les dates d'expiration que nous avions fait
+    // ... (votre code handleExpirations ici) ...
+});

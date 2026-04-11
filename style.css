@@ -990,3 +990,196 @@ footer {
 .job-card.expired .btn-postuler {
     background: #ccc !important;
 }
+
+
+.career-hero {
+    height: 400px;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('public/img/contact/jobs.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.job-card.expired {
+    border: 1px solid #ddd;
+    filter: grayscale(1); /* Met la carte en noir et blanc */
+}
+
+
+/* Style de base pour le statut */
+.job-status {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espace entre l'icône et le texte */
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Version Actif - Vert */
+.status-active {
+    color: #27ae60;
+}
+
+/* Version Expiré - Rouge */
+.status-expired {
+    color: #e74c3c;
+}
+
+
+/* Layout Carrière & Actus */
+.career-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2/3 pour Emploi, 1/3 pour Actus */
+    gap: 40px;
+    padding: 50px 0;
+}
+
+/* Style des Items Emploi (Accordéon) */
+.job-item {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.job-header-bar {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: white;
+}
+
+.job-details {
+    max-height: 0; /* Caché par défaut */
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    background: #fdfdfd;
+}
+
+.job-item.open .job-details {
+    max-height: 500px; /* S'ouvre */
+}
+
+.details-content {
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+
+/* Bouton + / - */
+.toggle-details {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.job-item.open .toggle-details {
+    transform: rotate(45deg); /* Devient une croix pour fermer */
+}
+
+/* Style Actualités */
+.news-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.news-date {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .career-layout { grid-template-columns: 1fr; }
+}
+
+
+
+/* Layout Carrière & Actus */
+.career-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2/3 pour Emploi, 1/3 pour Actus */
+    gap: 40px;
+    padding: 50px 0;
+}
+
+/* Style des Items Emploi (Accordéon) */
+.job-item {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.job-header-bar {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: white;
+}
+
+.job-details {
+    max-height: 0; /* Caché par défaut */
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    background: #fdfdfd;
+}
+
+.job-item.open .job-details {
+    max-height: 500px; /* S'ouvre */
+}
+
+.details-content {
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+
+/* Bouton + / - */
+.toggle-details {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.job-item.open .toggle-details {
+    transform: rotate(45deg); /* Devient une croix pour fermer */
+}
+
+/* Style Actualités */
+.news-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.news-date {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .career-layout { grid-template-columns: 1fr; }
+}
+
+
+
+
