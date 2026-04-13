@@ -169,42 +169,6 @@ window.addEventListener('load', initAnimations);
 
 
 
-// INITIALISATION EMAILJS (À configurer)
-(function() {
-    // REMPLACEZ 'VOTRE_CLE_PUBLIQUE' par votre clé fournie par EmailJS
-    emailjs.init("1yWA4dRfwA1f7yD1e"); 
-})();
-
-const contactForm = document.getElementById('contact-form');
-const statusMsg = document.getElementById('form-status');
-const submitBtn = document.getElementById('submit-btn');
-
-if(contactForm) {
-    contactForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        submitBtn.innerHTML = "Envoi en cours... <i class='fas fa-spinner fa-spin'></i>";
-        submitBtn.disabled = true;
-
-        // Paramètres : 'ServiceID', 'TemplateID', '#formID'
-        emailjs.sendForm('service_blfrgp6', 'template_ba13ngv')
-            .then(function() {
-                statusMsg.innerHTML = "<span class='success'>Message envoyé avec succès !</span>";
-                contactForm.reset();
-            }, function(error) {
-                statusMsg.innerHTML = "<span class='error'>Erreur lors de l'envoi. Réessayez.</span>";
-                console.log('FAILED...', error);
-            })
-            .finally(() => {
-                submitBtn.innerHTML = "Envoyer <i class='fas fa-paper-plane'></i>";
-                submitBtn.disabled = false;
-            });
-    });
-}
-
-
-
-
 (function() {
     function checkJobStatus() {
         // 1. On récupère la date d'aujourd'hui
