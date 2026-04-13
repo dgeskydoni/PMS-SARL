@@ -1183,3 +1183,55 @@ footer {
 
 
 
+/* --- STYLES DESKTOP (Vérifie que tu as déjà ça) --- */
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.menu-toggle {
+    display: none; /* Caché sur ordinateur */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+/* --- RESPONSIVE MOBILE (Max 768px) --- */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: flex; /* On affiche le bouton sur mobile */
+    }
+
+    .nav-links {
+        position: fixed;
+        right: -100%; /* Caché hors de l'écran à droite */
+        top: 70px;
+        flex-direction: column;
+        background-color: white;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        padding: 20px 0;
+    }
+
+    .nav-links.active {
+        right: 0; /* Apparaît quand on ajoute la classe 'active' */
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
+    
+    /* Animation du bouton en "X" quand ouvert */
+    .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+    .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+}
